@@ -1,0 +1,103 @@
+<html>
+<a href="https://www1.watchasian.id/the-good-bad-mother-2023-episode-2.html">link</a>
+<head>
+	<link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
+	<meta charset="utf-8">
+	<title>Video.JS Infinite HLS Buffering</title>
+	<style>
+		.video-js
+		{
+			max-width:100vw;
+			max-height:100vw;
+		}
+	</style>
+</head>
+
+<body>
+	<button onclick="myFunction()">Click me</button>
+	<video
+		id="video_container"
+		class="video-js"
+		autoplay
+		controls
+	>
+		<source src="https://td-014.dlatcdn.live/1ab5d45273a9183bebb58eb74d5722d8ea6384f350caf008f08cf018f1f0566d0cb82a2a799830d1af97cd3f4b6a9a81ef3aed2fb783292b1abcf1b8560a1d1aa308008b88420298522a9f761e5aa1024fbe74e5aa853cfc933cd1219327d1232e91847a185021b184c027f97ae732b3708ee6beb80ba5db6628ced43f1196fe/2dad5391849bbecd180441cd599aae7c/ep.1.v0.1678098251.m3u8" type="application/x-mpegURL"></source>
+	</video>
+	<script>
+		var elem = document.getElementById("video_container");
+		console.log(elem)
+		function myFunction()
+		{
+					if (elem.requestFullscreen) {
+  elem.requestFullscreen();
+} else if (elem.mozRequestFullScreen) {
+  elem.mozRequestFullScreen();
+} else if (elem.webkitRequestFullscreen) {
+  elem.webkitRequestFullscreen();
+} else if (elem.msRequestFullscreen) { 
+  elem.msRequestFullscreen();
+}
+		}
+	</script>
+
+	<script src="https://unpkg.com/video.js/dist/video.js"></script>
+	<script src="https://unpkg.com/videojs-contrib-quality-levels/dist/videojs-contrib-quality-levels.js"></script>
+</body>
+http://192.168.18.24:8081/spotify/index.html
+<script>
+	/* Plugin to set default quality */
+videojs.registerPlugin("defaultQuality", function() {
+  var player = this;
+  /*
+  var defaultBitrate = 1300; // Kbps
+
+  player.qualityLevels().on("addqualitylevel", function() {
+    var qualityLevels = player.qualityLevels();
+    var closestMatch = qualityLevels[0];
+    var closestDiff = Math.abs(closestMatch.bitrate / 1000 - defaultBitrate);
+    for (var i = 1; i < qualityLevels.length; i++) {
+      var currentDiff = Math.abs(
+        qualityLevels[i].bitrate / 1000 - defaultBitrate
+      );
+
+      if (currentDiff < closestDiff) {
+        closestMatch.enabled = false;
+        closestMatch = qualityLevels[i];
+        closestMatch.enabled = true;
+        closestDiff = currentDiff;
+      } else {
+        qualityLevels[i].enabled = false;
+      }
+    }
+  });
+  */
+  
+        var ql = player.qualityLevels();
+      var counter = 100;
+      ql.on('change', function foo() {
+        const levels = player.qualityLevels();
+        console.log('change', Array.from(levels).map((lvl) => lvl.enabled), levels.selectedIndex);
+      });
+      ql.on('addqualitylevel', function() {
+        console.log('add', Array.from(ql).map((lvl) => lvl.enabled), ql.selectedIndex);
+        if (ql.length === 3) {
+          const levels = player.qualityLevels();
+          Array.from(levels).forEach((lvl) => {
+            lvl.enabled = false;
+          });
+
+          levels[0].enabled = true;
+        }
+      });
+
+});
+
+/* Initialize the Player */
+var player = videojs("video_container", {
+  plugins: {
+    defaultQuality: {}
+  }
+});
+</script>
+
+</html>
