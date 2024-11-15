@@ -1,1 +1,78 @@
-<video src="https://storage-15.casicdn9.net/asian4146/25f160cc9061cedef7329d556c1aebd0/EP.1.v2.1080p.mp4?token=qXZXIhQSG2fXxpLOgc2c6Q&expires=1709588048&id=358164&title=" width="500px" controls></video>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Playlist Downloader</title>
+    <style>
+        img {
+            width : 180px;
+            height: 270px;
+        }
+        .data
+        {
+            min-width: 100vw;
+            max-width: 100vw;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .movie
+        {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center elements horizontally */
+        }
+    </style>
+</head>
+<body>
+    <div id="data" class="data">
+    </div>
+    <script>
+        // URL of the JSON file
+const url = 'https://raw.githubusercontent.com/DylanSouthgate/website/refs/heads/main/movies.json';
+
+// Assume you have a container element in your HTML to append the movies
+const container = document.getElementById('data');
+
+// Fetch the movie data from the JSON file
+fetch(url)
+  .then(response => response.json())  // Parse the JSON
+  .then(movies => {
+    // Loop through each movie in the JSON data
+    movies.forEach(movie => {
+      // Create a div for each movie
+      const movieDiv = document.createElement('div');
+      movieDiv.classList.add('movie');
+      
+      // Create a link for the image and the name
+      const movieLink = document.createElement('a');
+      movieLink.href = `/player?link=${movie.link}`;
+      
+      // Create and add the image to the link
+      const movieImage = document.createElement('img');
+      movieImage.src = movie.thumbnail;
+      movieLink.appendChild(movieImage);
+
+      // Create and add the name text
+      const movieName = document.createElement('a');
+      movieName.href = `/player?link=${movie.link}`;
+      movieName.textContent = movie.name;
+
+      // Append the movie image link and name to the movie div
+      movieDiv.appendChild(movieLink);
+      movieDiv.appendChild(movieName);
+      
+      // Append the movie div to the container
+      container.appendChild(movieDiv);
+    });
+  })
+  .catch(error => {
+    console.error('Error fetching the movie data:', error);
+  });
+
+
+    </script>
+</body>
+</html>
