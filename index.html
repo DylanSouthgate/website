@@ -48,7 +48,7 @@ fetch(url)
       
       // Create a link for the image and the name
       const movieLink = document.createElement('a');
-      movieLink.href = `/player?link=${movie.link}`;
+      movieLink.href = `/website/player?link=${movie.link}`;
       
       // Create and add the image to the link
       const movieImage = document.createElement('img');
@@ -57,7 +57,7 @@ fetch(url)
 
       // Create and add the name text
       const movieName = document.createElement('a');
-      movieName.href = `/player?link=${movie.link}`;
+      movieName.href = `/website/player?link=${movie.link}`;
       movieName.textContent = movie.name;
 
       // Append the movie image link and name to the movie div
